@@ -7,8 +7,6 @@ Vue.use(Router)
 import Layout from '@/views/layout/Layout'
 
 /* Router Modules */
-import componentsRouter from './modules/components'
-import nestedRouter from './modules/nested'
 
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -83,68 +81,64 @@ export default new Router({
 
 export const asyncRouterMap = [
   {
-    path: '/permission',
+    path: '/user',
     component: Layout,
-    redirect: '/permission/index',
-    alwaysShow: true, // will always show the root menu
+    redirect: '/user/list',
+    name: 'User',
     meta: {
-      title: 'permission',
-      icon: 'lock',
-      roles: ['admin', 'editor'] // you can set roles in root nav
+      title: '用户',
+      icon: 'user'
     },
     children: [
       {
-        path: 'page',
-        component: () => import('@/views/permission/page'),
-        name: 'PagePermission',
-        meta: {
-          title: 'pagePermission',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
+        path: 'create',
+        component: () => import('@/views/user/create'),
+        name: 'CreateUser',
+        meta: { title: '新增用户', icon: 'edit' }
       },
       {
-        path: 'directive',
-        component: () => import('@/views/permission/directive'),
-        name: 'DirectivePermission',
-        meta: {
-          title: 'directivePermission'
-          // if do not set roles, means: this page does not require permission
-        }
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/user/edit'),
+        name: 'EditUser',
+        meta: { title: '编辑用户', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/user/list'),
+        name: 'UserList',
+        meta: { title: '用户列表', icon: 'list' }
       }
     ]
   },
-  /** When your routing table is too long, you can split it into small modules**/
-  componentsRouter,
-  nestedRouter,
-
   {
-    path: '/example',
+    path: '/movie',
     component: Layout,
-    redirect: '/example/list',
-    name: 'Example',
+    redirect: '/movie/list',
+    name: 'Movie',
     meta: {
-      title: 'example',
+      title: '电影',
       icon: 'example'
     },
     children: [
       {
         path: 'create',
-        component: () => import('@/views/example/create'),
-        name: 'CreateArticle',
-        meta: { title: 'createArticle', icon: 'edit' }
+        component: () => import('@/views/movie/create'),
+        name: 'CreateMovie',
+        meta: { title: '新增电影', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
-        component: () => import('@/views/example/edit'),
-        name: 'EditArticle',
-        meta: { title: 'editArticle', noCache: true },
+        component: () => import('@/views/movie/edit'),
+        name: 'EditMovie',
+        meta: { title: '编辑电影', noCache: true },
         hidden: true
       },
       {
         path: 'list',
-        component: () => import('@/views/example/list'),
-        name: 'ArticleList',
-        meta: { title: 'articleList', icon: 'list' }
+        component: () => import('@/views/movie/list'),
+        name: 'MovieList',
+        meta: { title: '电影列表', icon: 'list' }
       }
     ]
   }

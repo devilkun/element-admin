@@ -12,7 +12,6 @@
 
 <script>
 import PanelGroup from './components/PanelGroup'
-import TodoList from './components/TodoList'
 
 const lineChartData = {
   newVisitis: {
@@ -36,8 +35,7 @@ const lineChartData = {
 export default {
   name: 'DashboardAdmin',
   components: {
-    PanelGroup,
-    TodoList
+    PanelGroup
   },
   data() {
     return {
