@@ -27,11 +27,12 @@
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
+          <!-- <router-link to="/">
             <el-dropdown-item>
               {{ $t('navbar.dashboard') }}
             </el-dropdown-item>
-          </router-link>
+          </router-link> -->
+          <li class="dropdown-header">admin (超级管理员)</li>
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">{{ $t('navbar.logOut') }}</span>
           </el-dropdown-item>
@@ -139,5 +140,15 @@ export default {
       }
     }
   }
+}
+.dropdown-header {
+    padding: 5px 12px 4px;
+    font-weight: 600;
+    color: #999999;
+    text-transform: uppercase;
+    display: block;
+    font-size: 12px;
+    line-height: 1.42857143;
+    white-space: nowrap;
 }
 </style>

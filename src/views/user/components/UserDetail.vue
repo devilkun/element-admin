@@ -1,6 +1,6 @@
 <template>
   <div class="createPost-container">
-    <el-form ref="ruleForm" :inline="true" :rules="rules" :model="ruleForm" label-width="80px" style="margin-top:20px;width:500px;margin-left:35%">
+    <el-form ref="ruleForm" :inline="true" :rules="rules" :model="ruleForm" label-width="80px" style="margin-top:20px;width:500px;margin-left:33%">
       <el-form-item label="用户名称" prop="name">
         <el-input v-model="ruleForm.name" style="width:360px"/>
       </el-form-item>
@@ -9,13 +9,6 @@
       </el-form-item>
       <el-form-item label="确认密码" prop="confirm_password">
         <el-input v-model="ruleForm.confirm_password" style="width:360px"/>
-      </el-form-item>
-      <el-form-item label="头像上传">
-        <el-upload :auto-upload="false" :on-change="changeUpload" class="upload-demo" drag action="">
-          <i class="el-icon-upload"/>
-          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-        </el-upload>
       </el-form-item>
       <el-form-item style="margin-left:35%">
         <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
