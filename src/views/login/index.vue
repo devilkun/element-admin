@@ -44,7 +44,7 @@
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
-
+// import { loginByUsername } from '@/api/login'
 export default {
   name: 'Login',
   data() {
@@ -65,7 +65,7 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '1111111'
+        password: '111111'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -106,6 +106,10 @@ export default {
           this.loading = true
           this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
             this.loading = false
+            this.$message({
+              message: '登录成功',
+              type: 'success'
+            })
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {
             this.loading = false
