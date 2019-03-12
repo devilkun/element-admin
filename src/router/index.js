@@ -86,28 +86,21 @@ export const asyncRouterMap = [
     redirect: '/user/list',
     name: 'User',
     meta: {
-      title: '用户',
+      title: '系统管理',
       icon: 'user'
     },
     children: [
       {
-        path: 'create',
-        component: () => import('@/views/user/create'),
-        name: 'CreateUser',
-        meta: { title: '新增用户', icon: 'edit' }
-      },
-      {
-        path: 'edit/:id(\\d+)',
-        component: () => import('@/views/user/edit'),
-        name: 'EditUser',
-        meta: { title: '编辑用户', noCache: true },
-        hidden: true
-      },
-      {
         path: 'list',
         component: () => import('@/views/user/list'),
         name: 'UserList',
-        meta: { title: '用户列表', icon: 'list' }
+        meta: { title: '用户', icon: 'list' }
+      },
+      {
+        path: 'auth',
+        component: () => import('@/views/user/list'),
+        name: 'UserList',
+        meta: { title: '权限', icon: 'list' }
       }
     ]
   },
