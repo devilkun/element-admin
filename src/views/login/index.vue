@@ -5,7 +5,6 @@
 
       <div class="title-container">
         <h3 class="title">{{ $t('login.title') }}</h3>
-        <lang-select class="set-language"/>
       </div>
 
       <el-form-item prop="username">
@@ -43,14 +42,13 @@
 </template>
 
 <script>
-import { isvalidUsername } from '@/utils/validate'
 // import { loginByUsername } from '@/api/login'
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error('请输入正确的用户名'))
+      if (value === '') {
+        callback(new Error('用户名不得为空'))
       } else {
         callback()
       }
@@ -64,8 +62,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -104,15 +102,14 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
+          this.$store.dispatch('LoginByUsername', this.loginForm).then(status => {
             this.loading = false
-            this.$message({
-              message: '登录成功',
-              type: 'success'
-            })
-            this.$router.push({ path: this.redirect || '/' })
-          }).catch(() => {
-            this.loading = false
+            if (status === 1) {
+              this.$message({ message: '登录成功', type: 'success' })
+              this.$router.push({ path: this.redirect || '/' })
+            } else {
+              this.$message({ message: '账号或密码错误', type: 'error' })
+            }
           })
         } else {
           console.log('error submit!!')
@@ -157,7 +154,7 @@ export default {
         height: 47px;
         caret-color: $cursor;
         &:-webkit-autofill {
-          -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
+          box-shadow: 0 0 0px 1000px $bg inset !important;
           -webkit-text-fill-color: $cursor !important;
         }
       }

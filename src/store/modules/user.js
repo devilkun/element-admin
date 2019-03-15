@@ -49,10 +49,14 @@ const user = {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password).then(response => {
-          const data = response.data
-          commit('SET_TOKEN', data.token)
-          setToken(response.data.token)
-          resolve()
+          if (response.data.status === 1) {
+            const data = response.data
+            commit('SET_TOKEN', data.token)
+            setToken(response.data.token)
+            resolve(1)
+          } else {
+            resolve(0)
+          }
         }).catch(error => {
           reject(error)
         })
