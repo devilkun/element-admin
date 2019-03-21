@@ -177,7 +177,7 @@ $light_gray:#eee;
   height: 100%;
   width: 100%;
   margin:0px;
-  background: url(/src/assets/images/313698.jpg) no-repeat;
+  background: url(http://image.canhuiqu.com/313698.jpg) no-repeat;
   background-size:100% 100%;
   background-attachment:fixed;
   .login-form {
